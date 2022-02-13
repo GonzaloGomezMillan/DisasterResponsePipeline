@@ -26,7 +26,7 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:////home/workspace/YourDataBaseName.db')
+engine = create_engine('sqlite:///../data/DisasterResponse.db')
 df = pd.read_sql_table('ETLPipeline_Udacity', engine)
 
 # load model
@@ -42,8 +42,8 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
-    genre_counts_aid_related = df.groupby('genre').count()['aid_related']
-    genre_counts_offer = df.groupby('genre').count()['offer']
+    genre_counts_aid_related = df.groupby('genre').sum()['aid_related']
+    genre_counts_help = df.groupby('genre').sum()['medical_help']
 
     
     # create visuals
@@ -54,34 +54,55 @@ def index():
                     Bar(
                         x=genre_names,
                         y=genre_counts
-                        )
+                        ),
                     ],
-            'offer':[
-                    Bar(
-                        x=genre_names,
-                        y=genre_counts_offer
-                        )
-                    ],
-            'aid_related':[
+             'layout': {
+                    'title': 'Distribution of Message Genres',
+                    'yaxis': {
+                    'title': "Count"
+                            },
+                 'xaxis': {
+                     'title': "Genre"
+                         }
+                        }            
+        },
+        {
+            'data': [
                     Bar(
                         x=genre_names,
                         y=genre_counts_aid_related
-                        )
-                         ],
-          }
-
-#             'layout': {
-#                 'title': 'Distribution of Message Genres',
-#                 'yaxis': {
-#                     'title': "Count"
-#                 },
-#                 'xaxis': {
-#                     'title': "Genre"
-#                 }
-#             }
-#         }
+                        ),
+                    ],
+             'layout': {
+                    'title': 'Number of aid-related messages',
+                    'yaxis': {
+                    'title': "Count"
+                            },
+                    'xaxis': {
+                    'title': "Genre"
+                            }
+                        }            
+        },
+        {
+            'data': [
+                    Bar(
+                        x=genre_names,
+                        y=genre_counts_help
+                        ),
+                    ],
+             'layout': {
+                    'title': 'Medical help messages',
+                    'yaxis': {
+                    'title': "Count"
+                            },
+                 'xaxis': {
+                     'title': "Genre"
+                         }
+                        }            
+        }
     ]
     
+
     # encode plotly graphs in JSON
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
