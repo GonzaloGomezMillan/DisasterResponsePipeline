@@ -27,10 +27,10 @@ This project is part of the Nanodegree Programm "Data Scientist" of Udacity. In 
     - `DisasterResponse.db`: Database where the prepared dataset is stored by process_data.py
     - `disaster_categories.csv`: Raw data set with categories of the messages.
     - `disaster_messages.csv`: Raw data set with the messages used for the analysis
-    - `process_data.py`: Python file which is in charge of preparing the dataset and saving it in a SQL database to be processed later by the ETL Pipeline. 
+    - `process_data.py`: Python file which is in charge of preparing the dataset and saving it in a SQL database to be processed later by the ETL Pipeline and ML Pipeline. 
 
 - models
-    - `train_classifier_py`: Python file which uses the prepared dataset to train the machine learning model trough an ETL Pipeline. 
+    - `train_classifier_py`: Python file which uses the prepared dataset to train the machine learning model trough an ETL Pipeline and ML Pipeline. 
 
 ---
 
