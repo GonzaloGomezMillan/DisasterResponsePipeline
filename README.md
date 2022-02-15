@@ -1,8 +1,6 @@
 # **Disaster Response Pipeline**
 This project is part of the Nanodegree Programm "Data Scientist" of Udacity. In this project I have build a machine learning model to categorize emergency messages based on the needs communicated by the sender.
 
-![Udacity](https://upload.wikimedia.org/wikipedia/commons/e/e8/Udacity_logo.svg)
-
 ---
 
 
@@ -40,5 +38,8 @@ This project is part of the Nanodegree Programm "Data Scientist" of Udacity. In 
 **Author**: The author of the data analysis, data preparation, machine learning model and  web app is Gonzalo Gomez Millan, based on the proposed Udacity Project.
 
 **Acknowledgments**: Also noteworthy is the work of Udacity facilitating the environment to develop this project, which is part of the Data Scientist Nanodegree Program.
+
+![Udacity](https://upload.wikimedia.org/wikipedia/commons/e/e8/Udacity_logo.svg)
+
 
 
