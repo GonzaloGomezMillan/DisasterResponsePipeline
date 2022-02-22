@@ -47,7 +47,7 @@ def clean_data(df):
         categories[column] = categories[column].apply(lambda x: x[-1])
     
         # convert column from string to numeric
-        categories[column] = categories[column].astype('int')
+        categories[column] = categories[column].astype('int').replace(2,1)
     
     # drop the original categories column from `df`
     df.drop('categories', axis=1, inplace = True)
@@ -74,7 +74,7 @@ def save_data(df, database_filename):
         None
     '''
     engine = create_engine('sqlite:///{}'.format(database_filename))
-    df.to_sql('ETLPipeline_Udacity', engine, index=False)
+    df.to_sql('ETLPipeline_Udacity', engine, index=False, if_exists = 'replace')
     return 
 
 
