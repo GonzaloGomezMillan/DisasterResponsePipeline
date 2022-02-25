@@ -72,6 +72,25 @@ def build_model():
     Return:
         model: Model created through a pipeline
     '''
+    pipeline = Pipeline([
+                    ('vect',CountVectorizer(tokenizer = tokenize)),
+                    ('tfidf',TfidfTransformer()),
+                    ('clf',MultiOutputClassifier(RandomForestClassifier()))
+                    ])
+    
+    X_train, X_test, y_train, y_test = train_test_split(X,Y,test_size=0.3)
+    pipeline.fit(X_train, y_train)
+    y_pred = pipeline.predict(X_test)
+    
+    pipeline.get_params()
+    
+    parameters = {
+            'clf__estimator__n_estimators': [5,10]
+            }
+
+    cv = GridSearchCV(pipeline, param_grid = parameters)
+    cv.fit(X_train,y_train)
+    
     model = Pipeline([
                     ('vect',CountVectorizer(tokenizer = tokenize)),
                     ('tfidf',TfidfTransformer()),
