@@ -78,10 +78,6 @@ def build_model():
                     ('clf',MultiOutputClassifier(RandomForestClassifier()))
                     ])
     
-    X_train, X_test, y_train, y_test = train_test_split(X,Y,test_size=0.3)
-    pipeline.fit(X_train, y_train)
-    y_pred = pipeline.predict(X_test)
-    
     pipeline.get_params()
     
     parameters = {
@@ -89,14 +85,8 @@ def build_model():
             }
 
     cv = GridSearchCV(pipeline, param_grid = parameters)
-    cv.fit(X_train,y_train)
     
-    model = Pipeline([
-                    ('vect',CountVectorizer(tokenizer = tokenize)),
-                    ('tfidf',TfidfTransformer()),
-                    ('clf',MultiOutputClassifier(RandomForestClassifier(n_estimators= 10)))
-                    ])
-    return model
+    return return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
